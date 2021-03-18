@@ -18,12 +18,8 @@ function Places(props) {
                 <tbody>
                     {props.places.map(place => {
                         return (<tr>
+                            <th>{place.Name}</th>
                             <th>{place.PlaceId}</th>
-                            <th>{place.PlaceName}</th>
-                            <th>{place.CountryId}</th>
-                            <th>{place.RegionId}</th>
-                            <th>{place.CityId}</th>
-                            <th>{place.CountryName}</th>
                         </tr>)
                     })}
                 </tbody>
