@@ -17,33 +17,52 @@ function Flights(props) {
                         <th>Currency</th>
                     </tr>
                 </thead>
-                {/* <tbody>
+                <tbody>
                     {props.flights.map(flight => {
                         return (
-                            <tr>
+                            <tr key={flight.QuoteId}>
                                 <td>{flight.MinPrice}</td>
                                 <td>{flight.OutboundLeg.DepartureDate}</td>
                                 {/* <td>{flight.Name}</td> */}
-                                {/* <td>{placeName(props.places, flight.OriginId)}</td>
-                                <td>{placeName(props.places, flight.DestinationId)}</td> 
+                                <td>{placeName(props.places, flight.OutboundLeg.OriginId)}</td>
+                                <td>{placeName(props.places, flight.OutboundLeg.DestinationId)}</td> 
                                 <td>{flight.Code}</td>
                             </tr>
                         )
                     })}
-                </tbody> */}
+                </tbody>
             </table>
         </div>
     )
 }
 
-// function placeName(places, placeID){
-//     for (place in places){
-//         if(place.placeID == placeID){
-//             return place.Name
-//         } else {
-//             return ("City does not exist")
-//         }
-//     }
-// }
+function placeName(places, placeId){
+    var place;
+    var i;
+    for(i = 0; i < places.length; i++){
+        if(places[i].PlaceId === placeId){
+            return places[i].Name
+        }
+    }
+    return ("city does not exist")
+
+    // for(i=0; i<10; i++){
+    //     place = places[i]
+    //     console.log(i)
+    //     console.log(places.length)
+
+    // // }
+    // // for (place in Object.values(places)){
+    //     console.log("place.PlaceId")
+    //     console.log(place)
+    //     console.log(place.PlaceId)
+    //     console.log(placeId)
+    //     if(place.PlaceID === placeId){
+    //         return place.Name
+    //     } else {
+    //         return ("City does not exist")
+    //     }
+    // }
+}
 
 export default Flights;
