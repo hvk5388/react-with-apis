@@ -26,7 +26,7 @@ function Flights(props) {
                                 {/* <td>{flight.Name}</td> */}
                                 <td>{placeName(props.places, flight.OutboundLeg.OriginId)}</td>
                                 <td>{placeName(props.places, flight.OutboundLeg.DestinationId)}</td> 
-                                <td>{flight.Code}</td>
+                                <td>{currencyName(props.currencies)}</td>
                             </tr>
                         )
                     })}
@@ -34,6 +34,13 @@ function Flights(props) {
             </table>
         </div>
     )
+}
+
+function currencyName(currencies){
+    if(currencies.length<1){
+        return("Currency not defined")
+    }
+    return(currencies[0].Code)
 }
 
 function placeName(places, placeId){
