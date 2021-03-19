@@ -31,20 +31,15 @@ function AirportInfo() {
             }
 
             const currency = curQuery
-            // {
-            //     "curQuery": curQuery
-            // }
 
-            const outboundpartialdate = {
-                "outQuery": outQuery
-            }
+            const outboundpartialdate = outQuery
 
             // let response2 = await fetch('https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browsequotes/v1.0/US/USD/en-US/SFO-sky/JFK-sky/'+ outboundpartialdate + '?' 
             // + new URLSearchParams(inboundpartialdate),
             // // + new URLSearchParams(outboundpartialdate),
             //     reqFlights)
 
-            const link = 'https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browsequotes/v1.0/US/' + currency + '/en-US/SFO-sky/JFK-sky/2021-03-21?' + new URLSearchParams(inboundpartialdate)
+            const link = 'https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browsequotes/v1.0/US/' + currency + '/en-US/SFO-sky/JFK-sky/'+ outboundpartialdate +'?' + new URLSearchParams(inboundpartialdate)
 
             console.log(link)
 
@@ -83,10 +78,10 @@ function AirportInfo() {
                 Currency:
             </label>
             <input id="queryInput" value={curQuery} onChange={(e) => setCurQuery(e.target.value)} required/>
-            {/* <label htmlFor="outboundDate">
+            <label htmlFor="outboundDate">
                 Outbound Date(yyyy-mm-dd):
             </label>
-            <input id="queryInput" value={outQuery} onChange={(e) => setOutQuery(e.target.value)} required/> */}
+            <input id="queryInput" value={outQuery} onChange={(e) => setOutQuery(e.target.value)} required/>
             <button className="search">Search</button>
         </form>
         {/* {showPlaces ? <Places places={places}></Places> : <></>} */}
