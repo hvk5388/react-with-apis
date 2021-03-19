@@ -2,14 +2,12 @@ import React from 'react';
 import './Flights.css';
 
 function Flights(props) {
-    console.log("props.flights")
-    console.log(props.flights)
-    console.log(props)
     return(
         <div className="flights">
             <table>
                 <thead>
                     <tr>
+                        {/* headings */}
                         <th>Minimum Price</th>
                         <th>Date</th>
                         <th>Departure City</th>
@@ -18,8 +16,10 @@ function Flights(props) {
                     </tr>
                 </thead>
                 <tbody>
+                    {/* map the response */}
                     {props.flights.map(flight => {
                         return (
+                            // print the output in the table
                             <tr key={flight.QuoteId}>
                                 <td>{flight.MinPrice}</td>
                                 <td>{flight.OutboundLeg.DepartureDate}</td>
@@ -35,6 +35,7 @@ function Flights(props) {
     )
 }
 
+//get currency
 function currencyName(currencies){
     if(currencies.length<1){
         return("Currency not defined")
@@ -42,8 +43,8 @@ function currencyName(currencies){
     return(currencies[0].Code)
 }
 
+//get place name based on destination and origin id 
 function placeName(places, placeId){
-    var place;
     var i;
     for(i = 0; i < places.length; i++){
         if(places[i].PlaceId === placeId){
