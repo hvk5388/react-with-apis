@@ -27,7 +27,7 @@ function AirportInfo() {
             }
 
             const inboundpartialdate = {
-                "query2": query2
+                "inboundpartialdate": query2
             }
 
             const currency = curQuery
@@ -44,8 +44,7 @@ function AirportInfo() {
             // // + new URLSearchParams(outboundpartialdate),
             //     reqFlights)
 
-            const link = 'https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browsequotes/v1.0/US/' + currency + '/en-US/SFO-sky/JFK-sky/2021-03-21'
-            // + new URLSearchParams(inboundpartialdate)
+            const link = 'https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browsequotes/v1.0/US/' + currency + '/en-US/SFO-sky/JFK-sky/2021-03-21?' + new URLSearchParams(inboundpartialdate)
 
             console.log(link)
 
