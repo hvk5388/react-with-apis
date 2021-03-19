@@ -12,6 +12,8 @@ function AirportInfo() {
     const [query2,setQuery2] = useState("")
     const [curQuery,setCurQuery]= useState("")
     const [outQuery,setOutQuery] = useState("")
+    const [departQuery,setDepartQuery] = useState("")
+    const [destQuery,setDestQuery] = useState("")
     const [showFlights,setShowFlights] = useState(false)
 
     function handleSubmit(e){
@@ -34,12 +36,16 @@ function AirportInfo() {
 
             const outboundpartialdate = outQuery
 
+            const originplace = departQuery + '-sky'
+
+            const destinationplace = destQuery + '-sky'
+
             // let response2 = await fetch('https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browsequotes/v1.0/US/USD/en-US/SFO-sky/JFK-sky/'+ outboundpartialdate + '?' 
             // + new URLSearchParams(inboundpartialdate),
             // // + new URLSearchParams(outboundpartialdate),
             //     reqFlights)
 
-            const link = 'https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browsequotes/v1.0/US/' + currency + '/en-US/SFO-sky/JFK-sky/'+ outboundpartialdate +'?' + new URLSearchParams(inboundpartialdate)
+            const link = 'https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browsequotes/v1.0/US/' + currency + '/en-US/' + originplace + '/' + destinationplace + '/'+ outboundpartialdate +'?' + new URLSearchParams(inboundpartialdate)
 
             console.log(link)
 
@@ -65,6 +71,8 @@ function AirportInfo() {
         setOutQuery("")
         setQuery2("")
         setCurQuery("")
+        setDepartQuery("")
+        setDestQuery("")
         setShowFlights(true)
     }
 
@@ -82,6 +90,14 @@ function AirportInfo() {
                 Outbound Date(yyyy-mm-dd):
             </label>
             <input id="queryInput" value={outQuery} onChange={(e) => setOutQuery(e.target.value)} required/>
+            <label htmlFor="outboundCity">
+                Departure Location (Airport Code):
+            </label>
+            <input id="queryInput" value={departQuery} onChange={(e) => setDepartQuery(e.target.value)} required/>
+            <label htmlFor="inboundCity">
+                Destination Location (Airport Code):
+            </label>
+            <input id="queryInput" value={destQuery} onChange={(e) => setDestQuery(e.target.value)} required/>
             <button className="search">Search</button>
         </form>
         {/* {showPlaces ? <Places places={places}></Places> : <></>} */}
