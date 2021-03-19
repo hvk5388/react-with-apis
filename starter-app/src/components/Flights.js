@@ -23,7 +23,6 @@ function Flights(props) {
                             <tr key={flight.QuoteId}>
                                 <td>{flight.MinPrice}</td>
                                 <td>{flight.OutboundLeg.DepartureDate}</td>
-                                {/* <td>{flight.Name}</td> */}
                                 <td>{placeName(props.places, flight.OutboundLeg.OriginId)}</td>
                                 <td>{placeName(props.places, flight.OutboundLeg.DestinationId)}</td> 
                                 <td>{currencyName(props.currencies)}</td>
@@ -52,24 +51,6 @@ function placeName(places, placeId){
         }
     }
     return ("city does not exist")
-
-    // for(i=0; i<10; i++){
-    //     place = places[i]
-    //     console.log(i)
-    //     console.log(places.length)
-
-    // // }
-    // // for (place in Object.values(places)){
-    //     console.log("place.PlaceId")
-    //     console.log(place)
-    //     console.log(place.PlaceId)
-    //     console.log(placeId)
-    //     if(place.PlaceID === placeId){
-    //         return place.Name
-    //     } else {
-    //         return ("City does not exist")
-    //     }
-    // }
 }
 
 export default Flights;

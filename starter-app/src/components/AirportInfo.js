@@ -11,43 +11,18 @@ function AirportInfo() {
     const [flights,setFlights] = useState([])
     const [query2,setQuery2] = useState("")
     const [curQuery,setCurQuery]= useState("")
+    const [outQuery,setOutQuery] = useState("")
     const [showFlights,setShowFlights] = useState(false)
-
-    // let props = {
-    //     Quotes: "flights.Quotes",
-    //     Currencies: "flight.Currencies"
-    // }
 
     function handleSubmit(e){
         e.preventDefault();
         async function getMyAPI() {
-            // const reqOptions = {
-            //     method:'GET',
-            //     headers: {
-            //         "x-rapidapi-key": '40759afcbcmsh33253c61ac2d377p14f791jsn068a8b3badfd',
-	        //         "x-rapidapi-host": "skyscanner-skyscanner-flight-search-v1.p.rapidapi.com",
-	        //         "useQueryString": true
-            //     }
-            // }
-
-            // const qString = {
-            //     "query": query
-            // }
-            
-            // let response = await fetch('https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/autosuggest/v1.0/US/USD/en-US/?' 
-            //     + new URLSearchParams(qString), 
-            //     // + new URLSearchParams(qString2), 
-            //     reqOptions)
-            // response = await response.json()
-            // setPlaces(response.Places)
-            // console.log(response.Places)
-
-            const reqFlights = {
+                const reqFlights = {
                 method:'GET',
                 headers: {
                     "x-rapidapi-key": '40759afcbcmsh33253c61ac2d377p14f791jsn068a8b3badfd',
 	                "x-rapidapi-host": "skyscanner-skyscanner-flight-search-v1.p.rapidapi.com",
-	                "useQueryString": true,
+	                "useQueryString": true
                 }
             }
 
@@ -55,17 +30,35 @@ function AirportInfo() {
                 "query2": query2
             }
 
-            const currency = {
-                "curQuery": curQuery
+            const currency = curQuery
+            // {
+            //     "curQuery": curQuery
+            // }
+
+            const outboundpartialdate = {
+                "outQuery": outQuery
             }
 
-            // let response2 = await fetch('https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browsequotes/v1.0/US/' + currency + '/en-US/SFO-sky/JFK-sky/2021-03-20/?' 
-            //     + new URLSearchParams(qString2),
-            //     // + new URLSearchParams(currency), 
+            // let response2 = await fetch('https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browsequotes/v1.0/US/USD/en-US/SFO-sky/JFK-sky/'+ outboundpartialdate + '?' 
+            // + new URLSearchParams(inboundpartialdate),
+            // // + new URLSearchParams(outboundpartialdate),
             //     reqFlights)
 
-            let response2 = await fetch('https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browsequotes/v1.0/US/USD/en-US/SFO-sky/JFK-sky/2021-03-20?' + new URLSearchParams(inboundpartialdate),
+            const link = 'https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browsequotes/v1.0/US/' + currency + '/en-US/SFO-sky/JFK-sky/2021-03-21'
+            // + new URLSearchParams(inboundpartialdate)
+
+            console.log(link)
+
+            let response2 = await fetch(link 
+            
+            // + new URLSearchParams(currencies)
+            ,
                 reqFlights)
+
+            // let response2 = await fetch('https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browsequotes/v1.0/US/' + currency + '/en-US/SFO-sky/JFK-sky/2021/03/21' 
+            // + new URLSearchParams(inboundpartialdate),
+            // // + new URLSearchParams(currency),
+            //     reqFlights)
 
             response2 = await response2.json()
             setFlights(response2.Quotes)
@@ -75,27 +68,26 @@ function AirportInfo() {
         }
 
         getMyAPI()
-        //setQuery("")
+        setOutQuery("")
         setQuery2("")
         setCurQuery("")
-        // setShowPlaces(true)
         setShowFlights(true)
     }
 
     return <div className="airportinfo">
         <form onSubmit={handleSubmit}>
-            {/* <label htmlFor="queryInput">
-                Starting Location:
-            </label>
-            <input id="queryInput" value={query} onChange={(e) => setQuery(e.target.value)} required/> */}
-            <label htmlFor="destination">
-                Date:
+            <label htmlFor="inboundDate">
+                Inbound Date(yyyy-mm-dd):
             </label>
             <input id="queryInput" value={query2} onChange={(e) => setQuery2(e.target.value)} required/>
-            {/* <label htmlFor="currency">
+            <label htmlFor="currency">
                 Currency:
             </label>
-            <input id="queryInput" value={curQuery} onChange={(e) => setCurQuery(e.target.value)} required/> */}
+            <input id="queryInput" value={curQuery} onChange={(e) => setCurQuery(e.target.value)} required/>
+            {/* <label htmlFor="outboundDate">
+                Outbound Date(yyyy-mm-dd):
+            </label>
+            <input id="queryInput" value={outQuery} onChange={(e) => setOutQuery(e.target.value)} required/> */}
             <button className="search">Search</button>
         </form>
         {/* {showPlaces ? <Places places={places}></Places> : <></>} */}
